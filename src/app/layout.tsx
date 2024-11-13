@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css';
-
+import { TodoProvider } from '@/contexts/TodoContext';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='container'>
-          {children}
-        </div>
+        <TodoProvider>
+          <div className='container'>
+            {children}
+          </div>
+        </TodoProvider>
       </body>
     </html>
   )

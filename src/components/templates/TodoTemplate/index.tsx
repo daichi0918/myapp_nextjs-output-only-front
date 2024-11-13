@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 /**
  * TodoTemplate
  *
@@ -8,6 +8,11 @@ import { useCallback, useState } from 'react';
 import styles from './styles.module.css';
 import Link from 'next/link';
 import { EventType } from '@/interfaces/Event';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFile, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { TodoContext } from '@/contexts/TodoContext';
+import { TodoType } from '@/interfaces/Todo';
+import { useRouter } from 'next/router';
 
 /**
  * TodoTemplate
@@ -15,10 +20,11 @@ import { EventType } from '@/interfaces/Event';
  */
 export const TodoTemplate = () => {
   /* state定義 */
+  const { originalTodoList, setOriginalTodoList } = useContext(TodoContext);
   const [searchKeyWord, setSearchKeyWord] = useState<string>('');
+  const router = useRouter();
 
   /* action定義 */
-
   /**
    * 検索キーワード更新処理
    * @param {*} e
@@ -27,6 +33,26 @@ export const TodoTemplate = () => {
     (e) => setSearchKeyWord(e.target.value),
     []
   )
+
+  /**
+   * 表示用TodoList
+   */
+    const showTodoList = useMemo(() => {
+      return originalTodoList.filter((todo) => {
+        const regexp = new RegExp('^' + searchKeyWord, 'i');
+        return todo.title.match(regexp);
+      });
+    }, [searchKeyWord, originalTodoList]);
+
+
+  /* 詳細ページ遷移関数 */
+  const linkToDetailPage = (targetId: number) => router.push(`/todo/detail/${targetId}`);
+
+  /* 編集ページ遷移関数 */
+  const linkToEditPage = (targetId: number) => router.push(`/todo/edit/${targetId}`);
+
+
+
 
   return (
     <>
@@ -49,12 +75,26 @@ export const TodoTemplate = () => {
         </div>
         <div className={styles.area}>
           <ul className={styles.todolist}>
-            <li className={styles.todoitem}>
-              <span className={styles.task}>Todo1</span>
-            </li>
-            <li className={styles.todoitem}>
-              <span className={styles.task}>Todo2</span>
-            </li>
+            {
+              showTodoList.length > 0 && (
+                showTodoList.map((todo: TodoType) => (
+                  <li className={styles.todoitem} key={todo.id}>
+                  <span className={styles.task}>{todo.title}</span>
+                  <div className={styles.todo_top_icons}>
+                    <div className={styles.icon_wrapper}>
+                        <FontAwesomeIcon icon={faFile} size='lg' onClick={() => linkToDetailPage(todo.id)}/>
+                      </div>
+                      <div className={styles.icon_wrapper}>
+                        <FontAwesomeIcon icon={faPenToSquare} size='lg' onClick={() => linkToEditPage(todo.id)}/>
+                      </div>
+                      <div className={styles.icon_wrapper}>
+                        <FontAwesomeIcon icon={faTrashCan} size='lg' />
+                      </div>
+                  </div>
+                </li>
+                ))
+              )
+            }
           </ul>
         </div>
       </div>
