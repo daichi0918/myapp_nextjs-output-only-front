@@ -3,7 +3,7 @@
  *
  * @package todo
  */
-import { TodoTemplate } from "@/components/templates/TodoTemplate"
+import { TodoTemplate } from "@/components/templates/Todo"
 
 /**
  * TodoPage

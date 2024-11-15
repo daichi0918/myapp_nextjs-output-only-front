@@ -1,5 +1,4 @@
 'use client';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 /**
  * TodoTemplate
  *
@@ -13,6 +12,9 @@ import { faFile, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-i
 import { TodoContext } from '@/contexts/TodoContext';
 import { TodoType } from '@/interfaces/Todo';
 import { useRouter } from 'next/router';
+import InputForm from '@/components/atoms/InputForm';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import TodoList from '@/components/organisms/TodoList';
 
 /**
  * TodoTemplate
@@ -22,7 +24,7 @@ export const TodoTemplate = () => {
   /* state定義 */
   const { originalTodoList, setOriginalTodoList } = useContext(TodoContext);
   const [searchKeyWord, setSearchKeyWord] = useState<string>('');
-  const router = useRouter();
+  // const router = useRouter();
 
   /* action定義 */
   /**
@@ -44,58 +46,58 @@ export const TodoTemplate = () => {
       });
     }, [searchKeyWord, originalTodoList]);
 
-
-  /* 詳細ページ遷移関数 */
-  const linkToDetailPage = (targetId: number) => router.push(`/todo/detail/${targetId}`);
-
-  /* 編集ページ遷移関数 */
-  const linkToEditPage = (targetId: number) => router.push(`/todo/edit/${targetId}`);
-
-
+    
+  /**
+   * todoの削除処理
+   * @param { number } targetId
+   * @param { string } taskName
+   */
+  const handleDeleteTodoTask = (targetId: number, taskName: string) => {
+    if (window.confirm(`「${taskName}」を削除していいですか？`)) {
+      const newTodoList = originalTodoList.filter(
+        (todo) => todo.id !== targetId
+      );
+      setOriginalTodoList(newTodoList);
+    }
+  };
 
 
   return (
     <>
-      <section className={styles.common}>
-        <nav>
-          <ul className={styles.list}>
-            <li className={styles.item}>
-              <Link href='/todo'>Top</Link>
-            </li>
-            <li className={styles.item}>
-            <Link href='/todo/create'>Create</Link>
-            </li>
-          </ul>
-        </nav>
-      </section>
       <h1 className={styles.title}>TodoList</h1>
       <div className={styles.common}>
         <div className={styles.area}>
-          <input className={styles.input} type={"text"} placeholder={"Search Keyword"} value={searchKeyWord} onChange={handleChangeSearchKeyword}/>
+          <InputForm 
+            className={styles.input}
+            placeholder={"Search Keyword"}
+            InputValue={searchKeyWord}
+            onChange={handleChangeSearchKeyword}
+          />
         </div>
         <div className={styles.area}>
-          <ul className={styles.todolist}>
+          {/* <ul className={styles.todolist}>
             {
               showTodoList.length > 0 && (
                 showTodoList.map((todo: TodoType) => (
                   <li className={styles.todoitem} key={todo.id}>
                   <span className={styles.task}>{todo.title}</span>
                   <div className={styles.todo_top_icons}>
-                    <div className={styles.icon_wrapper}>
-                        <FontAwesomeIcon icon={faFile} size='lg' onClick={() => linkToDetailPage(todo.id)}/>
-                      </div>
+                    <Link href={`/todo/detail/${todo.id}`} className={styles.icon_wrapper}>
+                        <FontAwesomeIcon icon={faFile} size='lg'/>
+                      </Link>
+                      <Link href={`/todo/edit/${todo.id}`} className={styles.icon_wrapper}>
+                        <FontAwesomeIcon icon={faPenToSquare} size='lg'/>
+                      </Link>
                       <div className={styles.icon_wrapper}>
-                        <FontAwesomeIcon icon={faPenToSquare} size='lg' onClick={() => linkToEditPage(todo.id)}/>
-                      </div>
-                      <div className={styles.icon_wrapper}>
-                        <FontAwesomeIcon icon={faTrashCan} size='lg' />
+                        <FontAwesomeIcon icon={faTrashCan} size='lg' onClick={() => handleDeleteTodoTask(todo.id, todo.title)}/>
                       </div>
                   </div>
                 </li>
                 ))
               )
             }
-          </ul>
+          </ul> */}
+          <TodoList showTodoList={showTodoList} handleDeleteTodoTask={handleDeleteTodoTask}/>
         </div>
       </div>
     </>

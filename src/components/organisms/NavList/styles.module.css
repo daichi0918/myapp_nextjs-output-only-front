@@ -1,0 +1,30 @@
+.common {
+  width: 80%;
+  margin: 40px auto;
+}
+
+.list {
+    width: 100%;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.item {
+    text-align: center;
+    list-style-type: none;
+}
+
+.item > a {
+  transition: .3s;
+  display: block;
+  background-color: #fff;
+  text-decoration: none;
+  color: teal;
+  font-size: 24px;
+  font-weight: 700;
+  width: 80px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: Times New Roman, Times, serif;
+}
