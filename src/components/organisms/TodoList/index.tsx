@@ -1,3 +1,4 @@
+'use client';
 import { TodoType } from "@/interfaces/Todo"
 import { FC } from "react";
 import styles from "./styles.module.css";
