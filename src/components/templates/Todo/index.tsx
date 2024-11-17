@@ -5,14 +5,8 @@
  * @package templates
  */
 import styles from './styles.module.css';
-import Link from 'next/link';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFile, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { useTodo } from '@/hooks/Todo';
-import { useRouter } from 'next/router';
 import InputForm from '@/components/atoms/InputForm';
-
 import TodoList from '@/components/organisms/TodoList';
 
 /**
