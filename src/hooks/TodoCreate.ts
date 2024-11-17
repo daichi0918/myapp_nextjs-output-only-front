@@ -54,4 +54,12 @@ export const useTodoCreate = () => {
       router.push('/');
     }
   };
+
+  return {
+    inputTitle,
+    textareaContent,
+    handleInputTitleChange,
+    handleTextareaContentChange,
+    handleAddTodo,
+  };
 };

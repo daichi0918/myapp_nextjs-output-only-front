@@ -21,10 +21,10 @@ const TodoList:FC<TodoListProps> = (props) => {
           <li className={styles.todoitem} key={todo.id}>
           <span className={styles.task}>{todo.title}</span>
           <div className={styles.todo_top_icons}>
-            <Link href={`/todo/detail/${todo.id}`} className={styles.icon_wrapper}>
+            <Link href={`/detail/${todo.id}`} className={styles.icon_wrapper}>
                 <FontAwesomeIcon icon={faFile} size='lg'/>
               </Link>
-              <Link href={`/todo/edit/${todo.id}`} className={styles.icon_wrapper}>
+              <Link href={`/edit/${todo.id}`} className={styles.icon_wrapper}>
                 <FontAwesomeIcon icon={faPenToSquare} size='lg'/>
               </Link>
               <div className={styles.icon_wrapper}>
