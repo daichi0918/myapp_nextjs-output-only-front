@@ -6,6 +6,7 @@
 
 import styles from './styles.module.css';
 import Link from 'next/link';
+import { NAVIGATION_LIST } from '@/constants/navigation';
 
 /**
  * @returns {JSX.Element}
@@ -16,10 +17,10 @@ const NavList = () => {
       <nav>
         <ul className={styles.list}>
           <li className={styles.item}>
-            <Link href="/">Top</Link>
+            <Link href={NAVIGATION_LIST.TOP}>Top</Link>
           </li>
           <li className={styles.item}>
-            <Link href="/create">Create</Link>
+            <Link href={NAVIGATION_LIST.CREATE}>Create</Link>
           </li>
         </ul>
       </nav>

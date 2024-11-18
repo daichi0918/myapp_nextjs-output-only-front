@@ -14,6 +14,7 @@ import {
   faPenToSquare,
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
+import { NAVIGATION_LIST } from '@/constants/navigation';
 
 interface TodoListProps {
   showTodoList: Array<TodoType>;
@@ -34,10 +35,13 @@ const TodoList: FC<TodoListProps> = (props) => {
           <li className={styles.todoitem} key={todo.id}>
             <span className={styles.task}>{todo.title}</span>
             <div className={styles.todo_top_icons}>
-              <Link href={`/detail/${todo.id}`} className={styles.icon_wrapper}>
+              <Link
+                href={NAVIGATION_LIST.DETAIL}
+                className={styles.icon_wrapper}
+              >
                 <FontAwesomeIcon icon={faFile} size="lg" />
               </Link>
-              <Link href={`/edit/${todo.id}`} className={styles.icon_wrapper}>
+              <Link href={NAVIGATION_LIST.EDIT} className={styles.icon_wrapper}>
                 <FontAwesomeIcon icon={faPenToSquare} size="lg" />
               </Link>
               <div className={styles.icon_wrapper}>

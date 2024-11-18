@@ -11,7 +11,7 @@ import { TextAreaForm } from '@/components/atoms/TextAreaForm';
 import { Button } from '@/components/atoms/Button';
 
 /**
- * @param {TodoListProps}props
+ * @param {TodoListProps} props
  * @returns {JSX.Element}
  */
 const TodoCreateTemplate = () => {
