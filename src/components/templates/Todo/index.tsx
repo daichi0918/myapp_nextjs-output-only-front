@@ -1,6 +1,6 @@
 'use client';
 /**
- * TodoTemplate
+ * Todo
  *
  * @package templates
  */
@@ -26,7 +26,6 @@ export const TodoTemplate = () => {
       <div className={styles.common}>
         <div className={styles.area}>
           <InputForm 
-            className={styles.input}
             placeholder={"Search Keyword"}
             InputValue={searchKeyWord}
             onChange={handleChangeSearchKeyword}

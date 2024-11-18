@@ -40,7 +40,6 @@ export const TodoDetailTemplate = ({id}: {id: string}) => {
       <form className={styles.contents_container}>
         <div className={styles.area}>
           <InputForm
-            className={styles.input}
             InputValue={targetTodo[0].title}
             readOnly={true}
           />

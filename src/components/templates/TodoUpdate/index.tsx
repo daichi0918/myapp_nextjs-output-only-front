@@ -37,7 +37,6 @@ return (
       <div className={styles.area}>
         <InputForm 
           placeholder={"Title"}
-          className={styles.input}
           InputValue={editInputTitleValue}
           onChange={handleEditInputTitlChange}
         />
