@@ -1,37 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# nextjs-output-ony-front
 
-## Getting Started
+Next.js アウトプットサンプル
 
-First, run the development server:
+TypeScript を使用
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+状態管理は context api を使用
+
+## 目次
+
+1. 環境構築
+2. アプリケーションの仕様
+
+## 1. 環境構築
+
+### 1-1. ライブラリ インストール
+
+```
+npm install
+
+または
+
+yarn
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1-2. アプリケーション実行
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+または
 
-## Learn More
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 2. アプリケーションの仕様
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2-1. 仕様
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Todo リスト
+  - Todo 一覧表示
+  - Todo 検索処理
+  - Todo 新規登録処理
+  - Todo 詳細表示
+  - Todo 編集処理
+  - Todo 削除処理
 
-## Deploy on Vercel
+### 2-2. 構成技術
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# myapp_nextjs-output-only-front
+- typescript: 5
+- react: 18.2.0
+- react-dom: 18
+- next: 14.2.17
+- @fortawesome/react-fontawesom: 0.2.2
+- @fortawesome/free-solid-svg-icons: 6.6.0
