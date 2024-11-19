@@ -21,3 +21,15 @@ export const NAVIGATION_LIST = {
   CREATE: `${BASE_PATH}/create`,
   EDIT: `${BASE_PATH}/edit/:id`,
 };
+
+/**
+ * パス一覧
+ * 画面遷移時の使用
+ * @type {{TOP: string, CREATE: string, EDIT: string, DETAIL: string}}
+ */
+export const NAVIGATION_PATH = {
+  TOP: `/`,
+  DETAIL: `/detail/`,
+  CREATE: `/create`,
+  EDIT: `/edit/`,
+};

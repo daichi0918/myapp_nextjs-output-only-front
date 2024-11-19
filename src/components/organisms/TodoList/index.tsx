@@ -14,7 +14,8 @@ import {
   faPenToSquare,
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
-import { NAVIGATION_LIST } from '@/constants/navigation';
+import { NAVIGATION_LIST, NAVIGATION_PATH } from '@/constants/navigation';
+import { useRouter } from 'next/navigation';
 
 interface TodoListProps {
   showTodoList: Array<TodoType>;
@@ -27,6 +28,7 @@ interface TodoListProps {
  * @returns {JSX.Element}
  */
 const TodoList: FC<TodoListProps> = (props) => {
+  const router = useRouter();
   const { showTodoList, handleDeleteTodoTask } = props;
   return (
     <ul className={styles.todolist}>
@@ -36,12 +38,15 @@ const TodoList: FC<TodoListProps> = (props) => {
             <span className={styles.task}>{todo.title}</span>
             <div className={styles.todo_top_icons}>
               <Link
-                href={NAVIGATION_LIST.DETAIL}
+                href={`${NAVIGATION_PATH.DETAIL}${todo.id}`}
                 className={styles.icon_wrapper}
               >
                 <FontAwesomeIcon icon={faFile} size="lg" />
               </Link>
-              <Link href={NAVIGATION_LIST.EDIT} className={styles.icon_wrapper}>
+              <Link
+                href={`${NAVIGATION_PATH.EDIT}${todo.id}`}
+                className={styles.icon_wrapper}
+              >
                 <FontAwesomeIcon icon={faPenToSquare} size="lg" />
               </Link>
               <div className={styles.icon_wrapper}>

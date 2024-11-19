@@ -25,9 +25,13 @@ export const useTodoEdit = ({ id }: { id: string }) => {
   // 該当のtodoを取得
   const targetTodo = originalTodoList.filter((todo) => todo.id === Number(id));
 
+  if (!targetTodo) {
+    throw new Error(`Todo with id ${id} not found`);
+  }
+
   // 初期値設定
   const [editInputTitleValue, setEditInputTitleValue] = useState<string>(
-    targetTodo[0].title
+    targetTodo[0].title || ''
   );
   const [editTextareaContentValue, setEditTextareaContentValue] =
     useState<string>(targetTodo[0].content || '');
@@ -51,9 +55,17 @@ export const useTodoEdit = ({ id }: { id: string }) => {
   /**
    * todoListの更新発火処理
    * @param {React.MouseEvent<HTMLButtonElement>} e
+   * @param {string} targetId
    */
-  const handleUpdateTodo = (targetId: string) => {
+  const handleUpdateTodo = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
     if (editInputTitleValue !== '') {
+      console.log('editInputTitleValue');
+      console.log(editInputTitleValue);
+
       // 疑問：なんで順序変わらないの？？
       const updatedTodoList = originalTodoList.map((todo) =>
         todo.id === Number(targetId)

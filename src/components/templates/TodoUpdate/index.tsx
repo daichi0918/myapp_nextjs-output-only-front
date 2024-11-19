@@ -48,8 +48,7 @@ export const TodoUpdateTemplate = ({ id }: { id: string }) => {
           <Button
             buttonName={'Edit Todo'}
             onClick={(e) => {
-              e.preventDefault();
-              handleUpdateTodo(id);
+              handleUpdateTodo(e, id);
             }}
           />
         </div>
